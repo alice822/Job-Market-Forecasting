@@ -1,0 +1,53 @@
+[
+    {
+    "industry": "Technology",
+    "country": "United States",
+    "region": "California",
+    "city": "San Francisco",
+    "start_date": "2025-01-17T18:18:23.921Z",
+    "end_date": "2025-12-17T18:18:23.921Z",
+    "skills": [
+      "Python",
+      "React",
+      "AWS",
+      "Docker",
+      "SQL",
+      "Machine Learning"
+    ],
+    "experience_level": "Mid",
+    "employment_type": "Full-time"
+  },
+  {
+    "industry": "Healthcare",
+    "country": "Canada",
+    "region": "Ontario",
+    "city": "Toronto",
+    "start_date": "2025-02-01T00:00:00.000Z",
+    "end_date": "2026-02-01T00:00:00.000Z",
+    "skills": [
+      "Nursing",
+      "Patient Care",
+      "Electronic Health Records",
+      "Clinical Documentation"
+    ],
+    "experience_level": "Senior",
+    "employment_type": "Part-time"
+  },
+  {
+    "industry": "Finance",
+    "country": "United Kingdom",
+    "region": "England",
+    "city": "London",
+    "start_date": "2025-03-01T00:00:00.000Z",
+    "end_date": "2025-09-01T00:00:00.000Z",
+    "skills": [
+      "Financial Analysis",
+      "Risk Management",
+      "Bloomberg Terminal",
+      "Excel",
+      "Financial Modeling"
+    ],
+    "experience_level": "Entry",
+    "employment_type": "Contract"
+  }
+]
