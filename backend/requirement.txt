@@ -5,4 +5,5 @@ langchain
 python-dotenv
 pandas
 langchain-community
-python_dotenv
+langsmith
+pymongo
