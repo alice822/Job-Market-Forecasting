@@ -1,7 +1,14 @@
+'use client'
 import { Button } from "./ui/button";
 import { TrendingUp } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
+    const router = useRouter();
+     
+    const handleclick = () => {
+      router.push("/jobmarket-visualization");
+    }
     return (
       <header className="border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -11,10 +18,10 @@ export default function Header() {
               <span className="ml-2 text-xl font-bold">JobForecast</span>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <Button variant="ghost">Features</Button>
-              <Button variant="ghost">Solutions</Button>
-              <Button variant="ghost">Pricing</Button>
-              <Button variant="ghost">About</Button>
+              <Button onClick={handleclick} variant="ghost">overview</Button>
+              <Button onClick={handleclick} variant="ghost">Features</Button>
+              <Button onClick={handleclick} variant="ghost">Pricing</Button>
+              <Button onClick={handleclick} variant="ghost">About</Button>
             </nav>
             <div className="flex items-center space-x-4">
               <Button variant="ghost">Sign In</Button>
