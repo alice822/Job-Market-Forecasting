@@ -28,6 +28,7 @@ class ReportRequest(BaseModel):
     industry: str
     country: str
     region: str
+    report:str
     city: Optional[str] = None
     start_date: Optional[datetime] = None
     end_date: Optional[datetime] = None

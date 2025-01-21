@@ -1,15 +1,14 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { LineChart, BarChart, Users, FileText, Layout } from 'lucide-react';
+import { LineChart, BarChart, FileText,  } from 'lucide-react';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import Link from 'next/link'
 
 const  Homepage = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      
+    <div className="min-h-screen flex flex-col"> 
       <main className="flex-grow">
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-blue-50 to-indigo-50 py-20">
@@ -22,12 +21,12 @@ const  Homepage = () => {
                 Leverage AI-powered insights to stay ahead in the evolving job market. Get real-time forecasts and skill demand analysis.
               </p>
               <div className="flex justify-center space-x-4">
-                <Button size="lg" className="text-lg">
+                <Link href="/dashboard" size="lg" className="text-lg bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                   Get Started
-                </Button>
-                <Button size="lg" variant="outline" className="text-lg">
+                </Link>
+                <Link href='#' size="lg" variant="outline" className="text-lg bg-transparent hover:bg-blue-500 text-blue-700 font-bold py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                   Watch Demo
-                </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -99,9 +98,9 @@ const  Homepage = () => {
             <p className="text-xl text-blue-100 mb-8">
               Join thousands of professionals making data-driven career decisions.
             </p>
-            <Button size="lg" variant="secondary" className="text-lg">
+            <Link href='/sign-up' size="lg" className="text-lg bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-4 rounded">
               Start Free Trial
-            </Button>
+            </Link>
           </div>
         </section>
       </main>

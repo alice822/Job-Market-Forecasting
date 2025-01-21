@@ -18,6 +18,8 @@ class Location(BaseModel):
 class Timeframe(BaseModel):
     start_date: datetime
     end_date: datetime
+   
+
 
 class MarketSummary(BaseModel):
     forecast: str
@@ -25,8 +27,8 @@ class MarketSummary(BaseModel):
     growth_trajectory: Literal["Declining", "Stable", "Growing", "Rapidly Growing"]
 
 class DemandMetrics(BaseModel):
-    current_demand: int = Field(ge=0, le=10)
-    projected_demand: int = Field(ge=0, le=10)
+    current_demand: float = Field(ge=0, le=10)
+    projected_demand: float = Field(ge=0, le=10)
     yoy_growth: float
     job_openings_estimate: int
     competition_level: Literal["Low", "Moderate", "High"]
@@ -64,6 +66,12 @@ class JobRequest(BaseModel):
     skills: Optional[List[str]] = None
     experience_level: str = "Mid"
     employment_type: str = "Full-time"
+    market_summary: MarketSummary
+    demand_metrics: DemandMetrics
+    skills_analysis: SkillsAnalysis
+    salary_insights: SalaryInsights
+    market_factors: MarketFactors
+    # metadata: Metadata
     
     model_config = ConfigDict(
         populate_by_name=True,

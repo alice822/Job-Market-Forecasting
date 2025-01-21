@@ -13,24 +13,37 @@ class ReportController:
 
     async def create_report(self, request: ReportRequest) -> GetReport:
         try:
-            print(request.dict())
+            # print(request.dict())
             # Set default timeframe if not provided
             if not request.start_date or not request.end_date:
                 request.start_date = datetime.now()
                 request.end_date = datetime.now().replace(year=datetime.now().year + 1)
 
-            report_data = await self.llm_service.generate_report(
+            # report_data = await self.llm_service.generate_report(
+            #     industry=request.industry,
+            #     country=request.country,
+            #     region=request.region,
+            #     city=request.city,
+            #     start_date=request.start_date,
+            #     end_date=request.end_date,
+            #     skills=request.skills,
+            #     experience_level=request.experience_level,
+            #     employment_type=request.employment_type
+            # )
+            report_data = ReportRequest(
                 industry=request.industry,
                 country=request.country,
                 region=request.region,
                 city=request.city,
                 start_date=request.start_date,
                 end_date=request.end_date,
+                report=request.report,
                 skills=request.skills,
                 experience_level=request.experience_level,
                 employment_type=request.employment_type
             )
-            print(report_data)
+
+            # print(report_data)
             
             # Create report object
             report = GetReport(
@@ -44,7 +57,8 @@ class ReportController:
                     start_date=request.start_date,
                     end_date=request.end_date
                 ),
-                report = report_data['report'], 
+                # report = report_data['report'],
+                report = report_data.report, 
                 metadata=Metadata(
                     analysis_timestamp=datetime.now(),
                     data_freshness=datetime.now(),
@@ -55,6 +69,7 @@ class ReportController:
             
             # Save to database
             return await self.db_service.create_report(report)
+        
         except Exception as e:
             raise HTTPException(status_code=500, detail=str(e))
 

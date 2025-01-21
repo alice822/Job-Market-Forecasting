@@ -1,8 +1,7 @@
 from pymongo.collection import Collection
-from app.config import settings
 from app.models.forecastSchema import JobForecast
 from bson import ObjectId
-from typing import List, Optional, Dict
+from typing import List, Optional
 from datetime import datetime
 from app.database import MongoManager
 
@@ -24,24 +23,14 @@ class DatabaseService:
     async def create_forecast(self, forecast: JobForecast) -> JobForecast:
         """Create a new job market forecast"""
         try:
-            # Ensure forecast is a Pydantic model
-            if isinstance(forecast, dict):
-                forecast = JobForecast(**forecast)
-    
-            # Convert Pydantic model to dict and exclude id
             forecast_dict = forecast.model_dump(exclude={"id"})
-            
-            # Insert into database
             result = self.collection.insert_one(forecast_dict)
-            
-            # Update the forecast id with the inserted _id
-            forecast.id = str(result.inserted_id)
+            forecast.id = result.inserted_id
             return forecast
             
         except Exception as e:
             raise Exception(f"Error creating forecast: {str(e)}")
-    
-    
+
     async def get_forecasts(
         self,
         industry: Optional[str] = None,

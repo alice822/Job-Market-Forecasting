@@ -13,8 +13,9 @@ from app.models.forecastSchema import (
     Timeframe,
     Metadata
 )
-from app.services.llama_service import LLMService
+# from app.services.llama_service import LLMService
 from app.services.db_service import DatabaseService
+from app.services.llama_service import LLMService
 from typing import List, Optional
 from bson import ObjectId, errors as bson_errors
 import logging
@@ -27,24 +28,24 @@ class JobController:
     async def create_forecast(self, request: JobRequest) -> JobForecast:
         logging.debug(f"Received request body: {request}")
         try:
-            print(request.dict())
+            # print(request.dict())
             # Set default timeframe if not provided
             if not request.start_date or not request.end_date:
                 request.start_date = datetime.now()
                 request.end_date = datetime.now().replace(year=datetime.now().year + 1)
     
             # Generate forecast using LLM
-            forecast_data = await self.llm_service.generate_forecast(
-                industry=request.industry,
-                country=request.country,
-                region=request.region,
-                city=request.city,
-                start_date=request.start_date,
-                end_date=request.end_date,
-                skills=request.skills,
-                experience_level=request.experience_level,
-                employment_type=request.employment_type
-            )
+            # forecast_data = await self.llm_service.generate_forecast(
+            #     industry=request.industry,
+            #     country=request.country,
+            #     region=request.region,
+            #     city=request.city,
+            #     start_date=request.start_date,
+            #     end_date=request.end_date,
+            #     skills=request.skills,
+            #     experience_level=request.experience_level,
+            #     employment_type=request.employment_type
+            # )
             
             # Create the JobForecast object using proper nested models
             forecast = JobForecast(
@@ -58,35 +59,40 @@ class JobController:
                     start_date=request.start_date,
                     end_date=request.end_date
                 ),
-                market_summary=MarketSummary(
-                    forecast=forecast_data['market_summary']['forecast'],
-                    confidence_score=forecast_data['market_summary']['confidence_score'],
-                    growth_trajectory=forecast_data['market_summary']['growth_trajectory']
-                ),
-                demand_metrics=DemandMetrics(
-                    current_demand=forecast_data['demand_metrics']['current_demand'],
-                    projected_demand=forecast_data['demand_metrics']['projected_demand'],
-                    yoy_growth=forecast_data['demand_metrics']['yoy_growth'],
-                    job_openings_estimate=forecast_data['demand_metrics']['job_openings_estimate'],
-                    competition_level=forecast_data['demand_metrics']['competition_level']
-                ),
-                skills_analysis=SkillsAnalysis(
-                    required_skills=forecast_data['skills_analysis']['required_skills'],
-                    emerging_skills=forecast_data['skills_analysis']['emerging_skills'],
-                    complementary_skills=forecast_data['skills_analysis']['complementary_skills'],
-                    skill_gap_score=forecast_data['skills_analysis']['skill_gap_score']
-                ),
-                salary_insights=SalaryInsights(
-                    range_low=forecast_data['salary_insights']['range_low'],
-                    range_high=forecast_data['salary_insights']['range_high'],
-                    median=forecast_data['salary_insights']['median'],
-                    currency=forecast_data['salary_insights']['currency']
-                ),
-                market_factors=MarketFactors(
-                    positive_drivers=forecast_data['market_factors']['positive_drivers'],
-                    risk_factors=forecast_data['market_factors']['risk_factors'],
-                    industry_trends=forecast_data['market_factors']['industry_trends']
-                ),
+                market_summary=request.market_summary,
+                demand_metrics=request.demand_metrics,
+                skills_analysis=request.skills_analysis,
+                salary_insights=request.salary_insights,
+                market_factors=request.market_factors,
+                # market_summary=MarketSummary(
+                #     forecast=forecast_data['market_summary']['forecast'],
+                #     confidence_score=forecast_data['market_summary']['confidence_score'],
+                #     growth_trajectory=forecast_data['market_summary']['growth_trajectory']
+                # ),
+                # demand_metrics=DemandMetrics(
+                #     current_demand=forecast_data['demand_metrics']['current_demand'],
+                #     projected_demand=forecast_data['demand_metrics']['projected_demand'],
+                #     yoy_growth=forecast_data['demand_metrics']['yoy_growth'],
+                #     job_openings_estimate=forecast_data['demand_metrics']['job_openings_estimate'],
+                #     competition_level=forecast_data['demand_metrics']['competition_level']
+                # ),
+                # skills_analysis=SkillsAnalysis(
+                #     required_skills=forecast_data['skills_analysis']['required_skills'],
+                #     emerging_skills=forecast_data['skills_analysis']['emerging_skills'],
+                #     complementary_skills=forecast_data['skills_analysis']['complementary_skills'],
+                #     skill_gap_score=forecast_data['skills_analysis']['skill_gap_score']
+                # ),
+                # salary_insights=SalaryInsights(
+                #     range_low=forecast_data['salary_insights']['range_low'],
+                #     range_high=forecast_data['salary_insights']['range_high'],
+                #     median=forecast_data['salary_insights']['median'],
+                #     currency=forecast_data['salary_insights']['currency']
+                # ),
+                # market_factors=MarketFactors(
+                #     positive_drivers=forecast_data['market_factors']['positive_drivers'],
+                #     risk_factors=forecast_data['market_factors']['risk_factors'],
+                #     industry_trends=forecast_data['market_factors']['industry_trends']
+                # ),
                 metadata=Metadata(
                     analysis_timestamp=datetime.now(),
                     data_freshness=datetime.now(),
@@ -96,8 +102,8 @@ class JobController:
             )
             
             # Save to database using the to_mongo method
-            mongo_data = forecast.to_mongo()
-            return await self.db_service.create_forecast(mongo_data)
+            # mongo_data = forecast.to_mongo()
+            return await self.db_service.create_forecast(forecast)
             
         except ValueError as e:
             raise HTTPException(
