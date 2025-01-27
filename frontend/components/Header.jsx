@@ -25,21 +25,8 @@ export default function Header() {
   const pathname = usePathname();
   const isDashboard = pathname.startsWith('/dashboard');
 
-  const resources = [
-    { title: "Documentation", href: "/docs" },
-    { title: "API Reference", href: "/api" },
-    { title: "Case Studies", href: "/cases" },
-    { title: "Blog", href: "/blog" },
-  ];
 
-  const solutions = [
-    { title: "Job Market Analysis", href: "/solutions/analysis" },
-    { title: "Workforce Planning", href: "/solutions/planning" },
-    { title: "Skill Gap Analysis", href: "/solutions/skills" },
-    { title: "Industry Trends", href: "/solutions/trends" },
-  ];
-
-  if(isDashboard) return null;
+  if (isDashboard) return null;
 
   return (
     <header className="border-b bg-white sticky top-0 z-50">
@@ -58,54 +45,15 @@ export default function Header() {
               Overview
             </Link>
 
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="flex items-center space-x-1">
-                  <span>Solutions</span>
-                  <ChevronDown className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-48">
-                {solutions.map((item) => (
-                  <DropdownMenuItem key={item.href} asChild>
-                    <Link href={item.href}>{item.title}</Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
             <Link href="/about" className="px-3 py-2 text-gray-600 hover:text-gray-900">
               About
             </Link>
-
-            <Link href="/pricing" className="px-3 py-2 text-gray-600 hover:text-gray-900">
-              Pricing
-            </Link>
-
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="flex items-center space-x-1">
-                  <span>Resources</span>
-                  <ChevronDown className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48">
-                {resources.map((item) => (
-                  <DropdownMenuItem key={item.href} asChild>
-                    <Link href={item.href}>{item.title}</Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
           </nav>
 
           {/* Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" asChild>
-              <Link href="/sign-in">Sign In</Link>
-            </Button>
             <Button asChild>
-              <Link href="/sign-up">Start Free Trial</Link>
+              <Link href="/dashboard">Get Started</Link>
             </Button>
           </div>
 
@@ -125,44 +73,12 @@ export default function Header() {
                   <Link href="/" className="text-lg font-medium" onClick={() => setIsOpen(false)}>
                     Overview
                   </Link>
-                  <div className="space-y-3">
-                    <h3 className="text-sm font-medium text-gray-500">Solutions</h3>
-                    {solutions.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="block text-gray-600 hover:text-gray-900"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {item.title}
-                      </Link>
-                    ))}
-                  </div>
-                  <Link href="/features" className="text-lg font-medium" onClick={() => setIsOpen(false)}>
-                    Features
+                  <Link href="/about" className="px-3 py-2 text-gray-600 hover:text-gray-900">
+                    About
                   </Link>
-                  <Link href="/pricing" className="text-lg font-medium" onClick={() => setIsOpen(false)}>
-                    Pricing
-                  </Link>
-                  <div className="space-y-3">
-                    <h3 className="text-sm font-medium text-gray-500">Resources</h3>
-                    {resources.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="block text-gray-600 hover:text-gray-900"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {item.title}
-                      </Link>
-                    ))}
-                  </div>
                   <div className="pt-4 space-y-4">
-                    <Button variant="outline" className="w-full" asChild>
-                      <Link href="/sign-in" onClick={() => setIsOpen(false)}>Sign In</Link>
-                    </Button>
                     <Button className="w-full" asChild>
-                      <Link href="/sign-up" onClick={() => setIsOpen(false)}>Start Free Trial</Link>
+                      <Link href="/dashboard" onClick={() => setIsOpen(false)}>Get Started</Link>
                     </Button>
                   </div>
                 </div>

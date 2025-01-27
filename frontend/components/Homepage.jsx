@@ -1,9 +1,7 @@
 import React from 'react';
-import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { LineChart, BarChart, FileText,  } from 'lucide-react';
 import Footer from '@/components/Footer';
-import Header from '@/components/Header';
 import Link from 'next/link'
 
 const  Homepage = () => {

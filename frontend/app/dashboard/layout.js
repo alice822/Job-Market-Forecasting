@@ -5,7 +5,6 @@ import { LayoutDashboard, TrendingUp, LineChart as LineChartIcon, BarChart as Ba
 import { DashboardProvider } from './DashboardContext';
 import { useDashboard } from './DashboardContext';
 import Link from 'next/link';
-import { UserButton } from "@clerk/nextjs";
 
 const IndustrySelect = () => {
   const { 
@@ -142,7 +141,6 @@ export default function DashboardLayout({ children }) {
               </nav>
             </div>
             <div>
-              <UserButton />
             </div>
           </div>
         </div>

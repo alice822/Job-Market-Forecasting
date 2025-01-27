@@ -475,7 +475,6 @@
       ]
     }
   },
-  [
     {
       "industry": "Aerospace and Defense",
       "country": "India",
@@ -680,4 +679,4 @@
         ]
       }
     }
-  ]
+]

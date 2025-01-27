@@ -1,20 +1,8 @@
-'use client'
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useAuth } from "@clerk/nextjs";
-import {redirect} from 'next/navigation';
-import { useEffect } from "react";
 
 export default function DashboardPage() {
-  const { userId } = useAuth();
  
-  
-  useEffect(() => {
-    if (!userId) {
-      setTimeout(() => {
-        redirect("/sign-in");
-      }, 1000); 
-    }
-  }, [userId]);
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

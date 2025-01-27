@@ -9,24 +9,13 @@ export default function Footer(){
               <h3 className="text-sm font-semibold text-gray-900 tracking-wider uppercase">Product</h3>
               <ul className="mt-4 space-y-4">
                 <li><a href="#" className="text-gray-600 hover:text-gray-900">Features</a></li>
-                <li><a href="#" className="text-gray-600 hover:text-gray-900">Pricing</a></li>
                 <li><a href="#" className="text-gray-600 hover:text-gray-900">Updates</a></li>
               </ul>
             </div>
             <div>
               <h3 className="text-sm font-semibold text-gray-900 tracking-wider uppercase">Company</h3>
               <ul className="mt-4 space-y-4">
-                <li><a href="#" className="text-gray-600 hover:text-gray-900">About</a></li>
-                <li><a href="#" className="text-gray-600 hover:text-gray-900">Blog</a></li>
-                <li><a href="#" className="text-gray-600 hover:text-gray-900">Contact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-900 tracking-wider uppercase">Resources</h3>
-              <ul className="mt-4 space-y-4">
-                <li><a href="#" className="text-gray-600 hover:text-gray-900">Documentation</a></li>
-                <li><a href="#" className="text-gray-600 hover:text-gray-900">API</a></li>
-                <li><a href="#" className="text-gray-600 hover:text-gray-900">Guides</a></li>
+                <li><a href="/about" className="text-gray-600 hover:text-gray-900">About</a></li>
               </ul>
             </div>
             <div>
