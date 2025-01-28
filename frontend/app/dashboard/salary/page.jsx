@@ -13,6 +13,15 @@ const Page = () => {
       low: industry.salary_insights.range_low / 100000,
       high: industry.salary_insights.range_high / 100000
     }));
+
+    if (!selectedIndustriesData) {
+      return(
+          <div className="flex items-center justify-center p-4">
+          <div className="animate-pulse text-2xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-transparent bg-clip-text animate-bounce">
+            Loading...
+          </div>
+        </div>
+      )}
   
     return (
       <Card className="mb-6">

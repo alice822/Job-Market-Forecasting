@@ -1,6 +1,6 @@
-from langchain_community.llms import Ollama
+from langchain_ollama import OllamaLLM  
 from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain
+from langchain_core.runnables import RunnableSequence  
 from app.config import settings
 from typing import List, Optional, Dict, Any
 from datetime import datetime
@@ -9,7 +9,8 @@ import re
 
 class LLMService:
     def __init__(self):
-        self.llm = Ollama(
+        # Use the updated OllamaLLM class
+        self.llm = OllamaLLM(
             model=settings.MODEL_NAME,
             temperature=0.7,
             base_url=settings.OLLAMA_BASE_URL,
@@ -75,7 +76,8 @@ class LLMService:
             """
         )
         
-        self.chain = LLMChain(llm=self.llm, prompt=self.prompt)
+        # Use RunnableSequence instead of LLMChain
+        self.chain = RunnableSequence(llm=self.llm, prompt=self.prompt)
 
     async def generate_forecast(
         self,
@@ -123,8 +125,8 @@ class LLMService:
         except Exception as e:
             raise Exception(f"Error generating forecast: {str(e)}")
 
-     # Utility to convert camelCase to snake_case
-    def _camel_to_snake_case(self,data: Any) -> Any:
+    # Utility to convert camelCase to snake_case
+    def _camel_to_snake_case(self, data: Any) -> Any:
         if isinstance(data, dict):
             return {re.sub(r'(?<!^)(?=[A-Z])', '_', k).lower(): self._camel_to_snake_case(v) for k, v in data.items()}
         elif isinstance(data, list):
@@ -230,4 +232,3 @@ class LLMService:
         for skill_type in ["requiredSkills", "emergingSkills", "complementarySkills"]:
             if len(data["skillsAnalysis"][skill_type]) != 3:
                 raise ValueError(f"{skill_type} must contain exactly three skills")
-

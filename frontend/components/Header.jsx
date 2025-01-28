@@ -2,14 +2,8 @@
 
 import { useState } from 'react';
 import Link from "next/link";
-import { TrendingUp, ChevronDown, Menu, X } from "lucide-react";
+import { TrendingUp, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import {
   Sheet,
   SheetContent,
@@ -52,7 +46,7 @@ export default function Header() {
 
           {/* Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button asChild>
+            <Button className='bg-purple-700 ' asChild>
               <Link href="/dashboard">Get Started</Link>
             </Button>
           </div>

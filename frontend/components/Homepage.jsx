@@ -96,8 +96,8 @@ const  Homepage = () => {
             <p className="text-xl text-blue-100 mb-8">
               Join thousands of professionals making data-driven career decisions.
             </p>
-            <Link href='/sign-up' size="lg" className="text-lg bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-4 rounded">
-              Start Free Trial
+            <Link href='/dashboard' size="lg" className="text-lg bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-4 rounded">
+              Get Started
             </Link>
           </div>
         </section>

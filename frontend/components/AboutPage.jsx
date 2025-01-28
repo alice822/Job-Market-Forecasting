@@ -178,10 +178,10 @@ export default function About() {
             </p>
             <div className="mt-6 space-x-4">
               <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-                Start Free Trial
+               Get Started
               </Button>
               <Button size="lg" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-100">
-                Schedule Demo
+                Watch Demo
               </Button>
             </div>
           </div>
